@@ -1,0 +1,9 @@
+/home/francesco/PycharmProjects/darknet/libdarknet.so
+/home/francesco/PycharmProjects/darknet/include/darknet/darknet.h
+/home/francesco/PycharmProjects/darknet/include/darknet/yolo_v2_class.hpp
+/home/francesco/PycharmProjects/darknet/uselib
+/home/francesco/PycharmProjects/darknet/darknet
+/home/francesco/PycharmProjects/darknet/share/darknet/DarknetTargets.cmake
+/home/francesco/PycharmProjects/darknet/share/darknet/DarknetTargets-release.cmake
+/home/francesco/PycharmProjects/darknet/share/darknet/DarknetConfig.cmake
+/home/francesco/PycharmProjects/darknet/share/darknet/DarknetConfigVersion.cmake

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/PeopleCounting.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/Activate.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/activate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/activate.csh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/activate.fish" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/python" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/python3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/python3.8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib64" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gVFZ54l3ROz9NeyGcc31zl58Mh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="" />
+      <created>1598191905538</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598191905538</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="767" y="296" width="447" height="520" key="FileChooserDialogImpl" timestamp="1598192012212">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="767" y="296" width="447" height="520" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1598192012212" />
+    <state x="829" y="453" width="334" height="207" key="Github.ShareDialog" timestamp="1598192403138">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="829" y="453" width="334" height="207" key="Github.ShareDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1598192403138" />
+    <state x="688" y="240" width="605" height="633" key="Github.UntrackedFilesDialog" timestamp="1598192411340">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="688" y="240" width="605" height="633" key="Github.UntrackedFilesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1598192411340" />
+    <state x="501" y="254" width="1022" height="737" key="SettingsEditor" timestamp="1598192951125">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="501" y="254" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1598192951125" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1598192491650">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1598192491650" />
+  </component>
+</project>
