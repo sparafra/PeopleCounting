@@ -29,6 +29,7 @@ class App:
 
         # open video source (by default this will try to open the computer webcam)
         self.vid = MyVideoCapture(self.video_source)
+        self.vid.start()
 
         # Create a canvas that can fit the above video source size
         self.canvas = tkinter.Canvas(window, width = width, height = height)
@@ -79,6 +80,8 @@ class App:
     def change_algorithm(self):
         self.AlgorithmIndex = self.v.get()
         print("Change Alg: " + str(self.v.get()))
+        if self.threadAI:
+            self.threadAI.stop()
 
 
 
@@ -89,15 +92,18 @@ class App:
         if ret:
             if not self.threadAI or not self.threadAI.is_alive():
                 if self.AlgorithmIndex == 1:
-                    self.threadAI = ThreadAI("Thread1", frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS)
+                    #self.threadAI = ThreadAI("Thread1", frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS)
+                    self.threadAI = ThreadAI("Thread1", self.vid, frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS)
                     self.threadAI.start()
                     
                 elif self.AlgorithmIndex == 2:
-                    self.threadAI = ThreadAI("Thread2", frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS)
+                    #self.threadAI = ThreadAI("Thread2", frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS)
+                    self.threadAI = ThreadAI("Thread2", self.vid, frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS)
                     self.threadAI.start()
                 elif self.AlgorithmIndex == 3:
                     #CSRNET
                     print("CSRNET")
+
 
 
             self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame))
@@ -107,7 +113,55 @@ class App:
         #print(self.v.get())
         self.window.after(self.delay, self.update)
 
+class MyVideoCapture(threading.Thread):
+    def __init__(self, video_source=0):
+        threading.Thread.__init__(self)
+        # Open the video source
+        self.vid = cv2.VideoCapture(video_source)
+        if not self.vid.isOpened():
+            raise ValueError("Unable to open video source", video_source)
 
+        # Get video source width and height
+        self.width = self.vid.get(cv2.CAP_PROP_FRAME_WIDTH)
+        self.height = self.vid.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        self.ret = None
+        self.frame = None
+    def run(self):
+        while self.vid.isOpened():
+            print("run")
+            self.ret, self.frame = self.vid.read()
+            time.sleep(0.04)
+
+    def get_frame(self):
+        if self.vid.isOpened():
+            print("get")
+            if self.ret:
+                resize = cv2.resize(self.frame, (width, height))
+
+                return (self.ret, cv2.cvtColor(resize, cv2.COLOR_BGR2RGB))
+            else:
+                return (self.ret, None)
+        else:
+            return (None, None)
+
+    """
+    def get_frame(self):
+        if self.vid.isOpened():
+            ret, frame = self.vid.read()
+            if ret:
+                resize = cv2.resize(frame, (width, height))
+                # Return a boolean success flag and the current frame converted to BGR
+                return (ret, cv2.cvtColor(resize, cv2.COLOR_BGR2RGB))
+            else:
+                return (ret, None)
+        else:
+            return (None, None)
+    """
+    # Release the video source when the object is destroyed
+    def __del__(self):
+        if self.vid.isOpened():
+            self.vid.release()
+"""
 class MyVideoCapture:
     def __init__(self, video_source=0):
         # Open the video source
@@ -135,9 +189,9 @@ class MyVideoCapture:
     def __del__(self):
         if self.vid.isOpened():
             self.vid.release()
-
+"""
 class ThreadAI(threading.Thread):
-    def __init__(self, nome, image, algorithm, AlgorithmIndex, labelPeople, labelFPS):
+    def __init__(self, nome, vid, image, algorithm, AlgorithmIndex, labelPeople, labelFPS):
         threading.Thread.__init__(self)
         self.nome = nome
         self.image = image
@@ -145,41 +199,50 @@ class ThreadAI(threading.Thread):
         self.labelPeople = labelPeople
         self.labelFPS = labelFPS
         self.AlgorithmIndex = AlgorithmIndex
+        self.stopVar = False
+        self.vid = vid
     def run(self):
 
-        self.prev_time = time.time()
+        while not self.stopVar:
+            ret, frame = self.vid.get_frame()
 
-        # Run detection
-        results = self.algorithm.get_prediction(self.image)
-        self.fps = 1 / (time.time() - self.prev_time)
-        self.labelFPS['text'] = "Time: {}".format(self.fps)
+            self.prev_time = time.time()
 
-        self.peopleCount = "0"
-        #print("AlgIndex: " + str(self.AlgorithmIndex))
-        if self.AlgorithmIndex == 1:
-            # Visualize results
-            r = results[0]
+            # Run detection
+            results = self.algorithm.get_prediction(frame)
 
-            print("Thread '" + self.name + "' " + str(r['class_ids'].size))
-            self.peopleCount = str(r['class_ids'].size)
-        elif self.AlgorithmIndex == 2:
-            #print("YOLO")
-            nPerson = 0
-            for label, confidence, bbox in results:
-                if label == "person":
-                    nPerson += 1
-            print("Thread '" + self.nome + "' " + str(nPerson))
-            self.peopleCount = str(nPerson)
-        elif self.AlgorithmIndex == 3:
+            #results = self.algorithm.get_prediction(self.image)
+            self.fps = 1 / (time.time() - self.prev_time)
+            self.labelFPS['text'] = "Time: {}".format(self.fps)
+
             self.peopleCount = "0"
+            #print("AlgIndex: " + str(self.AlgorithmIndex))
+            if self.AlgorithmIndex == 1:
+                # Visualize results
+                r = results[0]
 
-        self.labelPeople['text'] = self.peopleCount
+                print("Thread '" + self.name + "' " + str(r['class_ids'].size))
+                self.peopleCount = str(r['class_ids'].size)
+            elif self.AlgorithmIndex == 2:
+                #print("YOLO")
+                nPerson = 0
+                for label, confidence, bbox in results:
+                    if label == "person":
+                        nPerson += 1
+                print("Thread '" + self.name + "' " + str(nPerson))
+                self.peopleCount = str(nPerson)
+            elif self.AlgorithmIndex == 3:
+                self.peopleCount = "0"
 
-        #print(peopleCount)
+            self.labelPeople['text'] = self.peopleCount
 
-        # Rilascio del lock
-        #threadLock.release()
+            #print(peopleCount)
+
+            # Rilascio del lock
+            #threadLock.release()
+    def stop(self):
+        self.stopVar = True
 
 
 # Create a window and pass it to the Application object
-App(tkinter.Tk(), "Tkinter and OpenCV", "Video/Test1.mp4")
+App(tkinter.Tk(), "Tkinter and OpenCV", "Video/Test2.mp4")

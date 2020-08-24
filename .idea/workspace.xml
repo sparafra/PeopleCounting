@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/PeopleCounting.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/Activate.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/activate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/activate.csh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/activate.fish" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/python" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/python3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/python3.8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib64" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tkinter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tkinter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/darknet" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/darknet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/libdarknet.so" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/libdarknet.so" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +44,41 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Yolo" />
+      <recent name="$PROJECT_DIR$/MaskRcnn" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tkinter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PeopleCounting" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tkinter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Tkinter" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,6 +89,17 @@
       <updated>1598191905538</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="767" y="296" width="447" height="520" key="FileChooserDialogImpl" timestamp="1598192012212">
@@ -59,10 +114,26 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="688" y="240" width="605" height="633" key="Github.UntrackedFilesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1598192411340" />
-    <state x="501" y="254" width="1022" height="737" key="SettingsEditor" timestamp="1598192951125">
+    <state width="1377" height="258" key="GridCell.Tab.0.bottom" timestamp="1598311596570">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="501" y="254" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1598192951125" />
+    <state width="1377" height="258" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596570" />
+    <state width="1377" height="258" key="GridCell.Tab.0.center" timestamp="1598311596570">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1377" height="258" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596570" />
+    <state width="1377" height="258" key="GridCell.Tab.0.left" timestamp="1598311596569">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1377" height="258" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596569" />
+    <state width="1377" height="258" key="GridCell.Tab.0.right" timestamp="1598311596570">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1377" height="258" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596570" />
+    <state x="501" y="254" width="1022" height="737" key="SettingsEditor" timestamp="1598307985251">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="501" y="254" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1598307985251" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1598192491650">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
