@@ -19,16 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="">
+    <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="tkinter &amp; darknet for Cuda 11 and cudnn 8">
+      <change afterPath="$PROJECT_DIR$/CSRNet/CSRNet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tkinter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tkinter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yolo/darknet" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/darknet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yolo/libdarknet.so" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/libdarknet.so" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,11 +47,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CSRNet" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/CSRNet" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Yolo" />
       <recent name="$PROJECT_DIR$/MaskRcnn" />
@@ -88,6 +95,14 @@
       <option name="presentableId" value="Default" />
       <updated>1598191905538</updated>
     </task>
+    <task id="LOCAL-00001" summary="tkinter &amp; darknet for Cuda 11 and cudnn 8">
+      <created>1598311759268</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1598311759268</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,6 +115,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="tkinter &amp; darknet for Cuda 11 and cudnn 8" />
+    <option name="LAST_COMMIT_MESSAGE" value="tkinter &amp; darknet for Cuda 11 and cudnn 8" />
   </component>
   <component name="WindowStateProjectService">
     <state x="767" y="296" width="447" height="520" key="FileChooserDialogImpl" timestamp="1598192012212">
@@ -114,29 +134,33 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="688" y="240" width="605" height="633" key="Github.UntrackedFilesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1598192411340" />
-    <state width="1377" height="258" key="GridCell.Tab.0.bottom" timestamp="1598311596570">
+    <state width="1825" height="275" key="GridCell.Tab.0.bottom" timestamp="1598375293179">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596570" />
-    <state width="1377" height="258" key="GridCell.Tab.0.center" timestamp="1598311596570">
+    <state width="1825" height="275" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1598375293179" />
+    <state width="1377" height="258" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1598312430936" />
+    <state width="1825" height="275" key="GridCell.Tab.0.center" timestamp="1598375293178">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596570" />
-    <state width="1377" height="258" key="GridCell.Tab.0.left" timestamp="1598311596569">
+    <state width="1825" height="275" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1598375293178" />
+    <state width="1377" height="258" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1598312430936" />
+    <state width="1825" height="275" key="GridCell.Tab.0.left" timestamp="1598375293178">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596569" />
-    <state width="1377" height="258" key="GridCell.Tab.0.right" timestamp="1598311596570">
+    <state width="1825" height="275" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1598375293178" />
+    <state width="1377" height="258" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1598312430936" />
+    <state width="1825" height="275" key="GridCell.Tab.0.right" timestamp="1598375293179">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1598311596570" />
+    <state width="1825" height="275" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1598375293179" />
+    <state width="1377" height="258" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1598312430936" />
     <state x="501" y="254" width="1022" height="737" key="SettingsEditor" timestamp="1598307985251">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="501" y="254" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1598307985251" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1598192491650">
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1598311770253">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1598192491650" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1598311770253" />
   </component>
 </project>

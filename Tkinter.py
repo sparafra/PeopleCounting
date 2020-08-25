@@ -4,6 +4,7 @@ import PIL.Image, PIL.ImageTk
 import time
 import threading
 
+from CSRNet.CSRNet import CSRNet
 from MaskRcnn.samples.MaskRcnn import MaskRcnn
 from Yolo.Yolo_V4 import Yolo_V4
 
@@ -22,7 +23,7 @@ class App:
 
         self.maskRcnn = MaskRcnn("MaskRcnn/")
         self.yolo = Yolo_V4("Yolo/")
-
+        self.csrNet = CSRNet("CSRNet/")
         self.threadAI = None
         self.AlgorithmIndex = 0
 
@@ -103,6 +104,9 @@ class App:
                 elif self.AlgorithmIndex == 3:
                     #CSRNET
                     print("CSRNET")
+                    self.threadAI = ThreadAI("Thread3", self.vid, frame, self.csrNet, self.AlgorithmIndex, self.lblCount,
+                                             self.lblFPS)
+                    self.threadAI.start()
 
 
 
@@ -232,7 +236,8 @@ class ThreadAI(threading.Thread):
                 print("Thread '" + self.name + "' " + str(nPerson))
                 self.peopleCount = str(nPerson)
             elif self.AlgorithmIndex == 3:
-                self.peopleCount = "0"
+                print("Thread '" + self.name + "' " + str(results))
+                self.peopleCount = str(results)
 
             self.labelPeople['text'] = self.peopleCount
 
@@ -245,4 +250,4 @@ class ThreadAI(threading.Thread):
 
 
 # Create a window and pass it to the Application object
-App(tkinter.Tk(), "Tkinter and OpenCV", "Video/Test2.mp4")
+App(tkinter.Tk(), "Tkinter and OpenCV", "Video/Test3.mp4")
