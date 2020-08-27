@@ -1,7 +1,7 @@
 # PeopleCounting
 
-Importare il file “yolov4.weights” nella cartella “Yolo”
-Importare il file “mask_rcnn_coco.h5” nella cartella “MaskRcnn”
+Importare il file "yolov4.weights" nella cartella "Yolo". https://drive.google.com/file/d/1HbA1DOfc7GK5-tQZasjUnzLch8EfIkIP/view?usp=sharing
+Importare il file “mask_rcnn_coco.h5” nella cartella “MaskRcnn”. https://drive.google.com/file/d/1QeQxye1AHmXTbIJybcw34VDYRH_dzpp9/view?usp=sharing
 
 Yolo V4: https://github.com/AlexeyAB/darknet
 
