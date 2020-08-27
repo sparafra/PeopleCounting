@@ -5,6 +5,9 @@ from MaskRcnn.mrcnn import utils
 import MaskRcnn.mrcnn.model as modellib
 import MaskRcnn.samples.coco.coco
 
+coco_Weight = "mask_rcnn_coco.h5"
+
+
 class InferenceConfig(MaskRcnn.samples.coco.coco.CocoConfig):
     # Set batch size to 1 since we'll be running inference on
     # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
@@ -14,7 +17,7 @@ class InferenceConfig(MaskRcnn.samples.coco.coco.CocoConfig):
 class MaskRcnn:
     def __init__(self, ROOT_DIR):
         # Local path to trained weights file
-        self.COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
+        self.COCO_MODEL_PATH = os.path.join(ROOT_DIR, coco_Weight)
         # Download COCO trained weights from Releases if needed
         if not os.path.exists(self.COCO_MODEL_PATH):
             utils.download_trained_weights(self.COCO_MODEL_PATH)
@@ -57,17 +60,10 @@ class MaskRcnn:
                        'teddy bear', 'hair drier', 'toothbrush']
 
     def get_prediction(self, image):
-        #image = skimage.io.imread(os.path.join(IMAGE_DIR, "IMG_1.jpg"))
 
         # Run detection
         results = self.model.detect([image], verbose=1)
         return results
-        # Visualize results
-        #r = results[0]
-        #print("TEST")
-        #print(r['class_ids'].size)
-        #visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'],
-        #                            self.class_names, r['scores'])
 
 
 

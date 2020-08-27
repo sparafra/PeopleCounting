@@ -52,12 +52,3 @@ class CSRNet:
         im = np.expand_dims(im, axis=0)
         return im
 
-"""
-    def predict(self, path):
-        # Function to load image,predict heat map, generate count and return (count , image , heat map)
-        model = load_model()
-        image = create_img(path)
-        ans = model.predict(image)
-        count = np.sum(ans)
-        return count, image, ans
-"""
