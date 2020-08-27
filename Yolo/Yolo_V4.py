@@ -38,12 +38,13 @@ class Yolo_V4:
                                    interpolation=cv2.INTER_LINEAR)
         darknet.copy_image_from_bytes(self.darknet_image, frame_resized.tobytes())
 
-        prev_time = time.time()
+        #prev_time = time.time()
         detections = darknet.detect_image(self.network, self.class_names, self.darknet_image)
+
         #detections_queue.put(detections)
-        fps = int(1 / (time.time() - prev_time))
+        #fps = int(1 / (time.time() - prev_time))
         #fps_queue.put(fps)
-        print("FPS: {}".format(fps))
+        #print("FPS: {}".format(fps))
         #darknet.print_detections(detections)
         return detections
 
