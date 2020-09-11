@@ -19,10 +19,16 @@ class CSRNet:
 
     def get_prediction(self, image):
         image = self.create_img(image)
-        ans = self.model.predict(image)
-        count = np.sum(ans)
+        self.ans = self.model.predict(image)
+        count = np.sum(self.ans)
         return int(count)
 
+    def get_predictionDrawed(self, frame):
+        plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
+        #plt.show()
+        #heatmap_img = cv2.applyColorMap(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cv2.COLORMAP_JET)
+        return self.ans
+        #return heatmap_img
 
     def load_model(self):
         # Function to load and return neural network model

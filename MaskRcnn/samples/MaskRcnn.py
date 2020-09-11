@@ -65,6 +65,11 @@ class MaskRcnn:
         results = self.model.detect([image], verbose=1)
         return results
 
+    def get_predictionDrawed(self, frame, detection):
+        return visualize.get_display_instances_image(frame, detection['rois'], detection['masks'], detection['class_ids'],
+                                    self.class_names, detection['scores'])
+
+
 
 
 

@@ -165,6 +165,7 @@ def get_display_instances_image(image, boxes, masks, class_ids, class_names,
 
     return masked_image.astype(np.uint8)
 
+
 def display_instances(image, boxes, masks, class_ids, class_names,
                       scores=None, title="",
                       figsize=(16, 16), ax=None,

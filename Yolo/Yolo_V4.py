@@ -35,9 +35,11 @@ class Yolo_V4:
         frame_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         frame_resized = cv2.resize(frame_rgb, (self.width, self.height),
                                    interpolation=cv2.INTER_LINEAR)
+
         darknet.copy_image_from_bytes(self.darknet_image, frame_resized.tobytes())
 
         detections = darknet.detect_image(self.network, self.class_names, self.darknet_image)
+
 
         return detections
 
@@ -81,4 +83,15 @@ class Yolo_V4:
             return int(video_path)
         except ValueError:
             return video_path
+
+    def get_predictionDrawed(self, frame, detection):
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame_resized = cv2.resize(frame_rgb, (self.width, self.height),
+                                   interpolation=cv2.INTER_LINEAR)
+        random.seed(3)  # deterministic bbox colors
+        if frame_resized is not None:
+            image = darknet.draw_boxes(detection, frame_resized, self.class_colors)
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            return image
+        return None
 
