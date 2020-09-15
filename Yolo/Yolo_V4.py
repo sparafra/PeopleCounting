@@ -17,7 +17,9 @@ class Yolo_V4:
 
         args = self.parser()
         self.check_arguments_errors(args)
+
         print(os.path.join(ROOT_DIR, cfg))
+
         self.network, self.class_names, self.class_colors = darknet.load_network(
             args.config_file,
             args.data_file,
@@ -29,7 +31,6 @@ class Yolo_V4:
         self.width = darknet.network_width(self.network)
         self.height = darknet.network_height(self.network)
         self.darknet_image = darknet.make_image(self.width, self.height, 3)
-        #input_path = str2int(args.input)
 
     def get_prediction(self, image):
         frame_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

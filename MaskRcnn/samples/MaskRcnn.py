@@ -22,8 +22,6 @@ class MaskRcnn:
         if not os.path.exists(self.COCO_MODEL_PATH):
             utils.download_trained_weights(self.COCO_MODEL_PATH)
 
-        # Directory of images to run detection on
-        IMAGE_DIR = os.path.join(ROOT_DIR, "images")
 
         self.config = InferenceConfig()
         self.config.display()

@@ -24,7 +24,7 @@ class CSRNet:
         return int(count)
 
     def get_predictionDrawed(self, frame):
-        plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
+        #plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
         #plt.show()
         #heatmap_img = cv2.applyColorMap(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cv2.COLORMAP_JET)
         return self.ans

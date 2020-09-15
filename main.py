@@ -19,24 +19,34 @@ class App:
     def __init__(self, window, window_title, video_source=0):
         self.window = window
         self.window.title(window_title)
+        self.window.configure(background='grey')
+
+        """ #Image Background
+        src = cv2.imread('background/back1.jpg', cv2.IMREAD_UNCHANGED)
+        frame_resized = cv2.resize(src, (1920, 1080),
+                                   interpolation=cv2.INTER_LINEAR)
+        background_image = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
+        background_label = tkinter.Label(window, image=background_image)
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        """
 
         self.video_source = video_source
 
         self.showPredictionAnalysis = None
         self.detectionWindow = None
 
+        #Define the Directory of algorithms
         self.maskRcnn = MaskRcnn("MaskRcnn/")
         self.yolo = Yolo_V4("Yolo/")
         self.csrNet = CSRNet("CSRNet/")
         self.threadAI = None
         self.AlgorithmIndex = 0
 
+        #Prediction Window
         self.showPredictionAnalysis = False
 
 
-
-
-        # open video source (by default this will try to open the computer webcam)
+        # open video source (MyVideoCapture is on new thread)
         self.vid = MyVideoCapture(self.video_source)
         self.vid.start()
 
@@ -44,12 +54,10 @@ class App:
         self.canvas = tkinter.Canvas(window, width = width, height = height)
         self.canvas.pack()
 
-        # Button that lets the user take a snapshot
-        #self.btn_snapshot=tkinter.Button(window, text="Snapshot", width=50, command=self.snapshot)
-        #self.btn_snapshot.pack(anchor=tkinter.CENTER, expand=True)
-
+        #V is the variable for the three radiobutton
         self.v = tkinter.IntVar()
         self.v.set(1)
+        #update the algorithm index
         self.change_algorithm()
 
         self.btn_MaskRcnn = tkinter.Radiobutton(window, text="MaskRcnn", variable=self.v, value=1,
@@ -64,17 +72,16 @@ class App:
                                               command=self.change_algorithm)
         self.btn_CSRNet.pack(side=tkinter.LEFT, expand=True)
 
-        # Button that lets the user take a snapshot
-        self.btn_snapshot=tkinter.Button(window, text="Prediction Render", width=50, command=self.showAnalysis)
-        self.btn_snapshot.pack(anchor=tkinter.CENTER, expand=True)
-
         self.lblCount = tkinter.Label(window, text="0", bg = "dark green", fg="white", height=5)
         self.lblCount.pack(side=tkinter.LEFT, expand=True)
 
         self.lblFPS = tkinter.Label(window, text="FPS: 0", bg="yellow", fg="red", height=5)
         self.lblFPS.pack(side=tkinter.LEFT, expand=True)
-        #lblCount = tkinter.Label(window, text=peopleCount, bg="dark green", fg="white", height=5)
-        #lblCount.pack(side=tkinter.LEFT, expand=True)
+
+        self.btn_renderPrediction = tkinter.Button(window, text="Prediction Render", bg="orange", width=50,
+                                                   command=self.showAnalysis)
+        self.btn_renderPrediction.pack(anchor=tkinter.CENTER, expand=True)
+
 
         # After it is called once, the update method will be automatically called every delay milliseconds
         self.delay =1 #15
@@ -83,11 +90,17 @@ class App:
         self.window.mainloop()
 
     def showAnalysis(self):
+        #Set showAnalysis boolean and create a new window for the detection result. (the window will be passed to the AI thread)
         self.showPredictionAnalysis = not self.showPredictionAnalysis
+        if self.showPredictionAnalysis and not self.detectionWindow:
+            self.detectionWindow = detectionWindow(self.window, "Detection")
+            self.threadAI.setDetectionWindow(self.detectionWindow)
         if self.threadAI:
             self.threadAI.showAnalysis(self.showPredictionAnalysis)
-        print(self.showPredictionAnalysis)
 
+        #print(self.showPredictionAnalysis)
+
+    """
     def createNewWindow(self):
         self.detectionWindow = tkinter.Toplevel(self.window)
         self.detectionWindow.title("Detection Result")
@@ -95,20 +108,15 @@ class App:
         # Create a canvas that can fit the above video source size
         self.canvasDetected = tkinter.Canvas(self.detectionWindow, width=width, height=height)
         self.canvasDetected.pack()
-
+    
 
     def setImageDetected(self, image):
         self.photoDetected = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(image))
         self.canvasDetected.create_image(0, 0, image=self.photoDetected, anchor=tkinter.NW)
-
-    def snapshot(self):
-        # Get a frame from the video source
-        ret, frame = self.vid.get_frame()
-
-        if ret:
-            cv2.imwrite("frame-" + time.strftime("%d-%m-%Y-%H-%M-%S") + ".jpg", cv2.cvtColor(frame, cv2.COLOR_RGB2BGR))
+    """
 
     def change_algorithm(self):
+        #Stop the AI thread who running with others algorithm
         self.AlgorithmIndex = self.v.get()
         print("Change Alg: " + str(self.v.get()))
         if self.threadAI:
@@ -117,7 +125,7 @@ class App:
 
 
     def update(self):
-        start_time = time.time()  # start time of the loop
+        #start_time = time.time()  # start time of the loop
 
         # Get a frame from the video source
         ret, frame = self.vid.get_frame()
@@ -139,10 +147,9 @@ class App:
 
             self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame))
             self.canvas.create_image(0, 0, image = self.photo, anchor = tkinter.NW)
+
             #print("FPS: ", 1.0 / (time.time() - start_time))  # FPS = 1 / time to process loop
 
-        if self.showPredictionAnalysis and not self.detectionWindow:
-            self.detectionWindow = detectionWindow(self.window, "Detection")
 
         self.window.after(self.delay, self.update)
 
@@ -166,15 +173,16 @@ class MyVideoCapture(threading.Thread):
         while self.vid.isOpened():
             start_time = time.time()  # start time of the loop
             timeout = 0
+
             self.ret, self.frame = self.vid.read()
-            #time.sleep(0.01)
+
             end_time = time.time()
+
             if (end_time - start_time) < (1/self.fps_info):
                 timeout = (1/self.fps_info) - (time.time() - start_time);
-            #print(timeout)
+
             time.sleep(timeout)
-            #print("time to expire: ", timeout)
-            #print("Time elapsed: ", (time.time() - start_time))
+
             print("FPS: ", 1.0 / (time.time() - start_time))  # FPS = 1 / time to process loop
 
 
@@ -182,7 +190,6 @@ class MyVideoCapture(threading.Thread):
         if self.vid.isOpened():
             if self.ret:
                 resize = cv2.resize(self.frame, (width, height))
-
                 return (self.ret, cv2.cvtColor(resize, cv2.COLOR_BGR2RGB))
             else:
                 return (self.ret, None)
@@ -198,6 +205,7 @@ class MyVideoCapture(threading.Thread):
 class ThreadAI(threading.Thread):
     def __init__(self, nome, vid, image, algorithm, AlgorithmIndex, labelPeople, labelFPS, detectionWindow, showPredictionAnalysis):
         threading.Thread.__init__(self)
+
         self.nome = nome
         self.image = image
         self.algorithm = algorithm
@@ -219,17 +227,17 @@ class ThreadAI(threading.Thread):
             # Run detection
             self.results = self.algorithm.get_prediction(frame)
 
+            #Show fps for the detection
             self.fps = 1 / (time.time() - self.prev_time)
-            self.labelFPS['text'] = "FPS: {}".format(self.fps)
+            self.labelFPS['text'] = "FPS: {}".format(round(self.fps, 2))
 
             self.peopleCount = "0"
 
             if self.AlgorithmIndex == 1:
+
                 # Visualize results
                 r = self.results[0]
 
-                #print("Thread '" + self.name + "' " + str(r['class_ids'].size))
-                print(self.showPredictionAnalysis)
                 if self.showPredictionAnalysis:
                     self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, r))
 
@@ -242,12 +250,10 @@ class ThreadAI(threading.Thread):
                 if self.showPredictionAnalysis:
                     self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, self.results))
 
-                #print("Thread '" + self.name + "' " + str(nPerson))
                 self.peopleCount = str(nPerson)
             elif self.AlgorithmIndex == 3:
-                #print("Thread '" + self.name + "' " + str(self.results))
-                #self.detectionWindow.showPlot(self.algorithm.get_predictionDrawed(frame))
                 self.peopleCount = str(self.results)
+                #Show the heatmap preview with plot
 
             self.labelPeople['text'] = "People: " + self.peopleCount
 
@@ -255,9 +261,10 @@ class ThreadAI(threading.Thread):
         self.stopVar = True
     def showAnalysis(self, bool):
         self.showPredictionAnalysis = bool
-
+    def setDetectionWindow(self, detectionWindow):
+        self.detectionWindow = detectionWindow
 
 
 
 # Create a window and pass it to the Application object
-App(tkinter.Tk(), "People Counting", "Video/Test3.mp4")
+App(tkinter.Tk(), "People Counting", "Video/Test4.mp4")
