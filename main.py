@@ -267,4 +267,4 @@ class ThreadAI(threading.Thread):
 
 
 # Create a window and pass it to the Application object
-App(tkinter.Tk(), "People Counting", "Video/Test4.mp4")
+App(tkinter.Tk(), "People Counting", "Video/Test3.mp4")
