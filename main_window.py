@@ -5,6 +5,13 @@ import cv2
 import PIL.Image, PIL.ImageTk
 import time
 import threading
+from collections import deque
+import matplotlib
+matplotlib.use('Agg')
+
+import matplotlib.pyplot as plt
+from matplotlib import cm as c
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from CSRNet.CSRNet import CSRNet
 from MaskRcnn.samples.MaskRcnn import MaskRcnn
@@ -22,6 +29,8 @@ class App:
         self.window = window
         self.window.title(window_title)
         self.window.configure(background='grey')
+
+        self.coda = deque()
 
         """ #Image Background
         src = cv2.imread('background/back1.jpg', cv2.IMREAD_UNCHANGED)
@@ -47,11 +56,11 @@ class App:
         #Prediction Window
         self.showPredictionAnalysis = False
 
-        file_path = filedialog.askopenfilename(filetypes = (("MP4 Files","*.mp4"),))
+        self.file_path = filedialog.askopenfilename(filetypes = (("MP4 Files","*.mp4"),))
 
         # open video source (MyVideoCapture is on new thread)
         #self.vid = MyVideoCapture(self.video_source)
-        self.vid = MyVideoCapture(file_path)
+        self.vid = MyVideoCapture(self.file_path)
 
         self.vid.start()
 
@@ -64,6 +73,16 @@ class App:
         #self.canvas_prediction.pack()
         #self.canvas_prediction.pack(side=tkinter.RIGHT, expand=True)
         self.canvas_prediction.grid(row = 0, column = 5,columnspan=3, rowspan = 3, sticky = tkinter.E, pady = 2)
+
+        #filename = filedialog.askopenfilename(filetypes=(("image files", "*.png"),))
+        #self.image = plt.imread(filename)
+        #fig = plt.figure(figsize=(5, 5))
+        #plt.imshow(self.image)  # for later use self.im.set_data(new_data)
+        #plt.show()
+        # DrawingArea
+        #self.canvas_prediction = FigureCanvasTkAgg(fig, self.window)
+        #self.canvas_prediction.draw()
+        #self.canvas_prediction.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 
         src = cv2.imread('background/loading2.png', cv2.IMREAD_UNCHANGED)
         frame_resized = cv2.resize(src, (850, 600),
@@ -96,7 +115,7 @@ class App:
         #self.lblCount.pack(side=tkinter.LEFT, expand=True)
         self.lblCount.grid(row = 0, column = 4, sticky = tkinter.W, pady = 2, padx = 5)
 
-        self.lblFPS = tkinter.Label(window, text="FPS: 0", bg="yellow", fg="red", height=5)
+        self.lblFPS = tkinter.Label(window, text="FPS: 0", bg="orange", fg="white", height=5)
         #self.lblFPS.pack(side=tkinter.LEFT, expand=True)
         self.lblFPS.grid(row = 2, column = 4, sticky = tkinter.W, pady = 2, padx = 5)
 
@@ -107,6 +126,13 @@ class App:
         self.lblFrame_detected = tkinter.Label(window, text="Examinated: ...", bg="yellow", fg="red", height=5)
         # self.lblFPS.pack(side=tkinter.LEFT, expand=True)
         self.lblFrame_detected.grid(row=1, column=4, sticky=tkinter.W, pady=2, padx=5)
+
+        #str(self.file_path).split("/")[len(str(self.file_path).split("/")) - 1]
+        #Get the file name
+
+        self.lblPath = tkinter.Label(window, text=str(self.file_path).split("/")[len(str(self.file_path).split("/"))-1], bg="grey", fg="black", height=5)
+        # self.lblFPS.pack(side=tkinter.LEFT, expand=True)
+        self.lblPath.grid(row=6, column=2, sticky=tkinter.W, pady=2, padx=120)
 
         pause_src = cv2.imread('background/Icon/pause.png', cv2.IMREAD_UNCHANGED)
         pause_resized = cv2.resize(pause_src, (50, 50),
@@ -121,6 +147,11 @@ class App:
                                     interpolation=cv2.INTER_LINEAR)
         stop = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(stop_resized))
 
+        file_src = cv2.imread('background/Icon/folder.png', cv2.IMREAD_UNCHANGED)
+        file_resized = cv2.resize(file_src, (50, 50),
+                                  interpolation=cv2.INTER_LINEAR)
+        file = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(file_resized))
+
         self.btn_pause = tkinter.Button(window, text="PAUSE", image = pause, height = 50, width = 50,
                                                     command=self.pauseVideo)
         self.btn_pause.grid(row = 6, column = 0, sticky = tkinter.E, pady = 2, padx = 0)
@@ -133,6 +164,10 @@ class App:
                                         command=self.stopVideo)
         self.btn_stop.grid(row=6, column=0, sticky=tkinter.E, pady = 2, padx=100)
 
+        self.btn_file = tkinter.Button(window, text="", image = file, height=50, width=50,
+                                       command=self.fileDialog)
+        self.btn_file.grid(row=6, column=2, sticky=tkinter.W, pady=2, padx=55)
+
         #self.btn_renderPrediction = tkinter.Button(window, text="Prediction Render", bg="orange", width=50,
                                                    #command=self.showAnalysis)
         #self.btn_renderPrediction.pack(anchor=tkinter.CENTER, expand=True)
@@ -143,8 +178,29 @@ class App:
         self.delay =1 #15
         self.update()
 
+        """
+        while(True):
+            if len(self.coda) != 0:
+                hmap = self.coda.popleft()
+                plt.imshow(hmap.reshape(hmap.shape[1], hmap.shape[2]), cmap=c.jet)
+                plt.show()
+                plt.savefig("test.png")
+                print("saved")
+            time.sleep(300)
+        """
 
         self.window.mainloop()
+
+    def fileDialog(self):
+        self.file_path = filedialog.askopenfilename(filetypes = (("MP4 Files","*.mp4"),))
+        self.lblPath['text'] = str(self.file_path).split("/")[len(str(self.file_path).split("/"))-1]
+        #print(str(self.file_path).split("/"))
+        self.stopVideo()
+        self.vid.startVideo(self.file_path)
+        self.btn_resume['state'] = "disabled"
+        self.btn_pause['state'] = "normal"
+        self.btn_stop['state'] = "normal"
+
 
     def pauseVideo(self):
         self.vid.pause_capture()
@@ -205,26 +261,37 @@ class App:
 
         # Get a frame from the video source
         ret, frame, number = self.vid.get_frame()
+        if self.vid.isStop():
+            self.btn_pause['state'] = "disabled"
+            self.btn_stop['state'] = "disabled"
+            self.btn_resume['state'] = "normal"
+
 
         if ret:
             if not self.threadAI or not self.threadAI.is_alive():
                 if self.AlgorithmIndex == 1:
-                    self.threadAI = ThreadAI("Thread1", self.vid, frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction)
+                    self.threadAI = ThreadAI("Thread1", self.vid, frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda)
                     self.threadAI.start()
                 elif self.AlgorithmIndex == 2:
-                    self.threadAI = ThreadAI("Thread2", self.vid, frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction)
+                    self.threadAI = ThreadAI("Thread2", self.vid, frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda)
                     self.threadAI.start()
                 elif self.AlgorithmIndex == 3:
                     self.threadAI = ThreadAI("Thread3", self.vid, frame, self.csrNet, self.AlgorithmIndex, self.lblCount,
-                                             self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction)
+                                             self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda)
                     self.threadAI.start()
 
-
-
+            """
+            if len(self.coda) != 0:
+                hmap = self.coda.popleft()
+                plt.imshow(hmap.reshape(hmap.shape[1], hmap.shape[2]), cmap=c.jet)
+                #plt.show()
+                plt.savefig("test.png")
+                print("saved")
+            """
             self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame))
             self.canvas.create_image(0, 0, image = self.photo, anchor = tkinter.NW)
             self.lblFrame['text'] = "FRAME: " + str(number)
-            print("FRAME: ", number)
+            #print("FRAME: ", number)
 
             #print("FPS: ", 1.0 / (time.time() - start_time))  # FPS = 1 / time to process loop
 
@@ -236,6 +303,9 @@ class MyVideoCapture(threading.Thread):
         threading.Thread.__init__(self)
         # Open the video source
         self.video_source = video_source
+        self.initialize(self.video_source)
+
+    def initialize(self, video_source):
         self.vid = cv2.VideoCapture(video_source)
 
         self.fps_info = self.vid.get(cv2.CAP_PROP_FPS)
@@ -271,6 +341,8 @@ class MyVideoCapture(threading.Thread):
 
                 print("FPS: ", 1.0 / (time.time() - start_time))  # FPS = 1 / time to process loop
                 #print("FRAME THREAD: ", self.nFrame)
+                if self.nFrame == self.vid.get(7):
+                    self.stop_capture()
 
     def get_frame(self):
         if self.vid.isOpened() and not self.pauseVideo and not self.stopVideo:
@@ -296,13 +368,19 @@ class MyVideoCapture(threading.Thread):
         self.stopVideo = True
         self.vid.set(1, 0)
 
+    def startVideo(self, path):
+        self.initialize(path)
+
+    def isStop(self):
+        return self.stopVideo
+
     # Release the video source when the object is destroyed
     def __del__(self):
         if self.vid.isOpened():
             self.vid.release()
 
 class ThreadAI(threading.Thread):
-    def __init__(self, nome, vid, image, algorithm, AlgorithmIndex, labelPeople, labelFPS, labelFrame, detectionWindow, showPredictionAnalysis, canvas_prediction):
+    def __init__(self, nome, vid, image, algorithm, AlgorithmIndex, labelPeople, labelFPS, labelFrame, detectionWindow, showPredictionAnalysis, canvas_prediction, coda):
         threading.Thread.__init__(self)
 
         self.nome = nome
@@ -317,6 +395,9 @@ class ThreadAI(threading.Thread):
         self.detectionWindow = detectionWindow
         self.showPredictionAnalysis = showPredictionAnalysis
         self.canvas_prediction = canvas_prediction
+
+        self.coda = coda
+
     def run(self):
 
         while not self.stopVar:
@@ -348,8 +429,9 @@ class ThreadAI(threading.Thread):
                     self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
                     self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
 
-                    if self.showPredictionAnalysis:
-                        self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, r))
+                    #self.savePrediction(frame, frame_prediction, str(number))
+                    #if self.showPredictionAnalysis:
+                    #    self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, r))
 
                     self.peopleCount = str(r['class_ids'].size)
                 elif self.AlgorithmIndex == 2:
@@ -357,12 +439,30 @@ class ThreadAI(threading.Thread):
                     for label, confidence, bbox in self.results:
                         if label == "person":
                             nPerson += 1
-                    if self.showPredictionAnalysis:
-                        self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, self.results))
+
+                    frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
+                    frame_resized = cv2.resize(frame_prediction, (width, height),
+                                               interpolation=cv2.INTER_LINEAR)
+                    self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
+                    self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
+
+                    #self.savePrediction(frame, frame_prediction, str(number))
+
+                    #if self.showPredictionAnalysis:
+                    #    self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, self.results))
 
                     self.peopleCount = str(nPerson)
                 elif self.AlgorithmIndex == 3:
-                    self.peopleCount = str(self.results)
+                    count, img, hmap = self.results
+                    #self.coda.append(hmap)
+                    #self.peopleCount = str(self.results)
+                    self.peopleCount = str(count)
+                    plt.imshow(img.reshape(img.shape[1], img.shape[2], img.shape[3]))
+                    plt.savefig("test1.png")
+                    plt.imshow(hmap.reshape(hmap.shape[1], hmap.shape[2]), cmap=c.jet)
+                    # plt.show()
+                    plt.savefig("test.png")
+                    print("saved")
                     #Show the heatmap preview with plot
 
                 self.labelPeople['text'] = "People: " + self.peopleCount
@@ -374,6 +474,14 @@ class ThreadAI(threading.Thread):
     def setDetectionWindow(self, detectionWindow):
         self.detectionWindow = detectionWindow
 
+    def getPrediction(self):
+        return self.results
+
+    def savePrediction(self, frame, framePredicted, name):
+        imageOrig = PIL.Image.fromarray(frame)
+        imageOrig.save(name+".png")
+        imagePred = PIL.Image.fromarray(framePredicted)
+        imagePred.save(name + "P.png")
 
 
 # Create a window and pass it to the Application object

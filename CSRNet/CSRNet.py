@@ -21,7 +21,8 @@ class CSRNet:
         image = self.create_img(image)
         self.ans = self.model.predict(image)
         count = np.sum(self.ans)
-        return int(count)
+
+        return int(count), image, self.ans
 
     def get_predictionDrawed(self, frame):
         #plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
