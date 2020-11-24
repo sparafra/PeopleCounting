@@ -42,6 +42,7 @@ def predict(path):
     image = create_img(path)
     ans = model.predict(image)
     count = np.sum(ans)
+
     return count,image,ans
 
 
@@ -51,7 +52,9 @@ print(ans)
 #Print count, image, heat map
 plt.imshow(img.reshape(img.shape[1],img.shape[2],img.shape[3]))
 plt.show()
+
 plt.imshow(hmap.reshape(hmap.shape[1],hmap.shape[2]) , cmap = c.jet )
+plt.savefig("testP.png")
 plt.show()
 
 temp = h5py.File('data/ShanghaiTech/part_B/test_data/ground/IMG_309.h5' , 'r')

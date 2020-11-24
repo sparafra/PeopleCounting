@@ -22,11 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="added window for draw detection">
-      <change afterPath="$PROJECT_DIR$/background/Icon/folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/background/loading2.png" afterDir="false" />
+    <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="update image and main window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSRNet/CSRNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSRNet/CSRNet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSRNet/Inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSRNet/Inference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/build_release/darknet" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/build_release/darknet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/build_release/libdarknet.so" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/build_release/libdarknet.so" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/cfg/yolov4.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/cfg/yolov4.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/darknet" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/darknet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/libdarknet.so" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/libdarknet.so" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,16 +56,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/background/Icon" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Yolo/cfg" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Yolo/cfg" />
+      <recent name="$PROJECT_DIR$/Yolo/build_release" />
+      <recent name="$PROJECT_DIR$/Video" />
       <recent name="$PROJECT_DIR$/background/Icon" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/Video" />
-      <recent name="$PROJECT_DIR$/background" />
-      <recent name="$PROJECT_DIR$/CSRNet" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main_window">
@@ -86,7 +90,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Tkinter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGpu" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PeopleCounting" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,7 +102,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tkinter.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TestGpu.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PeopleCounting" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MaskRcnn/samples" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MaskRcnn/samples/demo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,16 +195,18 @@
     <list>
       <item itemvalue="Docker.Docker Image" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.Tkinter" />
       <item itemvalue="Python.main_window" />
       <item itemvalue="Python.Inference" />
+      <item itemvalue="Python.TestGpu" />
+      <item itemvalue="Python.demo" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main_window" />
-        <item itemvalue="Python.Inference" />
+        <item itemvalue="Python.TestGpu" />
+        <item itemvalue="Python.demo" />
         <item itemvalue="Docker.Docker Image" />
-        <item itemvalue="Python.Tkinter" />
+        <item itemvalue="Python.Inference" />
       </list>
     </recent_temporary>
   </component>
@@ -262,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601591891765</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update image and main window">
+      <created>1602170018288</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1602170018288</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -282,13 +316,14 @@
     <MESSAGE value="CSRnet implementation" />
     <MESSAGE value="update" />
     <MESSAGE value="added window for draw detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="added window for draw detection" />
+    <MESSAGE value="update image and main window" />
+    <option name="LAST_COMMIT_MESSAGE" value="update image and main window" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="751" y="376" width="559" height="362" key="#Docker" timestamp="1600618878215">
+    <state x="751" y="376" width="559" height="362" key="#Docker" timestamp="1605970366075">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="751" y="376" width="559" height="362" key="#Docker/72.27.1848.1053@72.27.1848.1053" timestamp="1600618878215" />
+    <state x="751" y="376" width="559" height="362" key="#Docker/72.27.1848.1053@72.27.1848.1053" timestamp="1605970366075" />
     <state x="655" y="153" width="1084" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600618565744">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -310,37 +345,41 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="688" y="240" width="605" height="633" key="Github.UntrackedFilesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1598192411340" />
-    <state width="1825" height="302" key="GridCell.Tab.0.bottom" timestamp="1602169859800">
+    <state width="901" height="316" key="GridCell.Tab.0.bottom" timestamp="1606176705994">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
+    <state width="2537" height="284" key="GridCell.Tab.0.bottom/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.bottom/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.bottom/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528611" />
     <state width="1825" height="161" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="1825" height="302" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1601679053730" />
+    <state width="901" height="316" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
     <state width="2537" height="189" key="GridCell.Tab.0.bottom/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488911" />
-    <state width="1825" height="302" key="GridCell.Tab.0.center" timestamp="1602169859800">
+    <state width="901" height="316" key="GridCell.Tab.0.center" timestamp="1606176705994">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
+    <state width="2537" height="284" key="GridCell.Tab.0.center/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.center/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.center/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528611" />
     <state width="1825" height="161" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="1825" height="302" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1601679053730" />
+    <state width="901" height="316" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
     <state width="2537" height="189" key="GridCell.Tab.0.center/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488910" />
-    <state width="1825" height="302" key="GridCell.Tab.0.left" timestamp="1602169859800">
+    <state width="901" height="316" key="GridCell.Tab.0.left" timestamp="1606176705994">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
+    <state width="2537" height="284" key="GridCell.Tab.0.left/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.left/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.left/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528610" />
     <state width="1825" height="161" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="1825" height="302" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1601679053730" />
+    <state width="901" height="316" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
     <state width="2537" height="189" key="GridCell.Tab.0.left/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488909" />
-    <state width="1825" height="302" key="GridCell.Tab.0.right" timestamp="1602169859800">
+    <state width="901" height="316" key="GridCell.Tab.0.right" timestamp="1606176705994">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
+    <state width="2537" height="284" key="GridCell.Tab.0.right/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.right/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.right/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528611" />
     <state width="1825" height="161" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="1825" height="302" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1601679053730" />
+    <state width="901" height="316" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
     <state width="2537" height="189" key="GridCell.Tab.0.right/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488911" />
     <state width="1825" height="340" key="GridCell.Tab.1.bottom" timestamp="1599559536268">
       <screen x="72" y="27" width="1848" height="1053" />
@@ -358,15 +397,17 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state width="1825" height="340" key="GridCell.Tab.1.right/72.27.1848.1053@72.27.1848.1053" timestamp="1599559536268" />
-    <state x="710" y="27" width="1210" height="1053" key="SettingsEditor" timestamp="1602169502092">
+    <state x="721" y="144" width="1210" height="1053" key="SettingsEditor" timestamp="1605970256276">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
+    <state x="1128" y="0" key="SettingsEditor/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602197171567" />
     <state x="710" y="27" width="1210" height="1053" key="SettingsEditor/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169502092" />
     <state x="881" y="0" width="1210" height="1440" key="SettingsEditor/373.0.2187.2520@373.0.2187.2520" timestamp="1600181498772" />
-    <state x="721" y="144" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1600618831677" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1601591906757">
+    <state x="721" y="144" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1605970256276" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1602170030634">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
+    <state x="591" y="289" key="Vcs.Push.Dialog.v2/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602170030634" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864296166" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1601591906757" />
     <state x="1054" y="0" width="1310" height="1179" key="dock-window-1" timestamp="1600166957559">

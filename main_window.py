@@ -47,8 +47,8 @@ class App:
         self.detectionWindow = None
 
         #Define the Directory of algorithms
-        self.maskRcnn = MaskRcnn("MaskRcnn/")
         self.yolo = Yolo_V4("Yolo/")
+        self.maskRcnn = MaskRcnn("MaskRcnn/")
         self.csrNet = CSRNet("CSRNet/")
         self.threadAI = None
         self.AlgorithmIndex = 0
@@ -73,6 +73,13 @@ class App:
         #self.canvas_prediction.pack()
         #self.canvas_prediction.pack(side=tkinter.RIGHT, expand=True)
         self.canvas_prediction.grid(row = 0, column = 5,columnspan=3, rowspan = 3, sticky = tkinter.E, pady = 2)
+
+        # Add the graph to the graph tab
+        #self.fig = plt.figure()
+        # self.fig = Figure()
+        #self.graph = FigureCanvasTkAgg(self.fig, self.canvas_prediction)
+        # graph.get_tk_widget().pack(side='top', fill='both', expand=True)
+        #self.graph.get_tk_widget().grid(row=0, column=5, columnspan=3, rowspan=3, sticky=tkinter.E, pady=2)
 
         #filename = filedialog.askopenfilename(filetypes=(("image files", "*.png"),))
         #self.image = plt.imread(filename)
@@ -270,14 +277,14 @@ class App:
         if ret:
             if not self.threadAI or not self.threadAI.is_alive():
                 if self.AlgorithmIndex == 1:
-                    self.threadAI = ThreadAI("Thread1", self.vid, frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda)
+                    self.threadAI = ThreadAI("Thread1", self.vid, frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda, self.graph)
                     self.threadAI.start()
                 elif self.AlgorithmIndex == 2:
-                    self.threadAI = ThreadAI("Thread2", self.vid, frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda)
+                    self.threadAI = ThreadAI("Thread2", self.vid, frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda, self.graph)
                     self.threadAI.start()
                 elif self.AlgorithmIndex == 3:
                     self.threadAI = ThreadAI("Thread3", self.vid, frame, self.csrNet, self.AlgorithmIndex, self.lblCount,
-                                             self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda)
+                                             self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction, self.coda, self.graph)
                     self.threadAI.start()
 
             """
@@ -380,7 +387,7 @@ class MyVideoCapture(threading.Thread):
             self.vid.release()
 
 class ThreadAI(threading.Thread):
-    def __init__(self, nome, vid, image, algorithm, AlgorithmIndex, labelPeople, labelFPS, labelFrame, detectionWindow, showPredictionAnalysis, canvas_prediction, coda):
+    def __init__(self, nome, vid, image, algorithm, AlgorithmIndex, labelPeople, labelFPS, labelFrame, detectionWindow, showPredictionAnalysis, canvas_prediction, coda, graph):
         threading.Thread.__init__(self)
 
         self.nome = nome
@@ -397,6 +404,7 @@ class ThreadAI(threading.Thread):
         self.canvas_prediction = canvas_prediction
 
         self.coda = coda
+        self.graph = graph
 
     def run(self):
 
@@ -445,7 +453,6 @@ class ThreadAI(threading.Thread):
                                                interpolation=cv2.INTER_LINEAR)
                     self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
                     self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
-
                     #self.savePrediction(frame, frame_prediction, str(number))
 
                     #if self.showPredictionAnalysis:
@@ -454,14 +461,27 @@ class ThreadAI(threading.Thread):
                     self.peopleCount = str(nPerson)
                 elif self.AlgorithmIndex == 3:
                     count, img, hmap = self.results
+
+
                     #self.coda.append(hmap)
                     #self.peopleCount = str(self.results)
                     self.peopleCount = str(count)
-                    plt.imshow(img.reshape(img.shape[1], img.shape[2], img.shape[3]))
-                    plt.savefig("test1.png")
-                    plt.imshow(hmap.reshape(hmap.shape[1], hmap.shape[2]), cmap=c.jet)
-                    # plt.show()
-                    plt.savefig("test.png")
+
+                    #plt.imshow(img.reshape(img.shape[1], img.shape[2], img.shape[3]))
+                    #plt.savefig("test1.png")
+
+                    #plt.imshow(hmap.reshape(hmap.shape[1], hmap.shape[2]), cmap=c.jet)
+                    #plt.show()
+
+                    #plt.savefig("test.png")
+
+                    # Add the graph to the graph tab
+                    self.fig = plt.figure()
+                    #self.fig = Figure()
+                    graph = FigureCanvasTkAgg(self.fig, self.canvas_prediction)
+                    #graph.get_tk_widget().pack(side='top', fill='both', expand=True)
+                    graph.get_tk_widget().grid(row = 0, column = 5,columnspan=3, rowspan = 3, sticky = tkinter.E, pady = 2)
+
                     print("saved")
                     #Show the heatmap preview with plot
 

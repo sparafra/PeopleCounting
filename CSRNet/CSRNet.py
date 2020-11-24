@@ -17,11 +17,28 @@ class CSRNet:
 
 
 
-    def get_prediction(self, image):
-        image = self.create_img(image)
+    def get_prediction(self, img):
+        image = self.create_img(img)
         self.ans = self.model.predict(image)
         count = np.sum(self.ans)
+        #plt.autoscale(True)
+        plt.clf()
+        #plt.imshow(image.reshape(image.shape[1], image.shape[2], image.shape[3]))
 
+        plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
+        plt.draw()
+        #plt.savefig("testP.png")
+
+        """
+        plt.imshow(image.reshape(image.shape[1], image.shape[2], image.shape[3]))
+        # plt.show()
+        plt.savefig("testO1.png")
+
+        plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
+        # plt.show()
+        plt.savefig("testP1.png")
+        print("saved")
+        """
         return int(count), image, self.ans
 
     def get_predictionDrawed(self, frame):
@@ -46,9 +63,9 @@ class CSRNet:
     def create_img(self, path):
         # Function to load,normalize and return image
         print(path)
-        #im = Image.open(path).convert('RGB')
+        im = Image.fromarray(path).convert('RGB')
 
-        im = np.array(path)
+        im = np.array(im)
 
         im = im / 255.0
 
