@@ -25,12 +25,7 @@
     <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="update image and main window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSRNet/CSRNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSRNet/CSRNet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSRNet/Inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSRNet/Inference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yolo/build_release/darknet" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/build_release/darknet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yolo/build_release/libdarknet.so" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/build_release/libdarknet.so" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yolo/cfg/yolov4.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/cfg/yolov4.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yolo/darknet" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/darknet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yolo/libdarknet.so" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/libdarknet.so" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +64,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main_window">
-    <configuration name="Inference" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PeopleCounting" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -77,11 +72,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CSRNet" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CSRNet/Inference.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Plot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -196,17 +191,17 @@
       <item itemvalue="Docker.Docker Image" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.main_window" />
-      <item itemvalue="Python.Inference" />
       <item itemvalue="Python.TestGpu" />
       <item itemvalue="Python.demo" />
+      <item itemvalue="Python.Plot" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main_window" />
+        <item itemvalue="Python.Plot" />
         <item itemvalue="Python.TestGpu" />
         <item itemvalue="Python.demo" />
         <item itemvalue="Docker.Docker Image" />
-        <item itemvalue="Python.Inference" />
       </list>
     </recent_temporary>
   </component>
@@ -296,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602170018288</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update image and main window">
+      <created>1606177448768</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1606177448768</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -345,41 +347,41 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="688" y="240" width="605" height="633" key="Github.UntrackedFilesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1598192411340" />
-    <state width="901" height="316" key="GridCell.Tab.0.bottom" timestamp="1606176705994">
+    <state width="1825" height="187" key="GridCell.Tab.0.bottom" timestamp="1606580259131">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state width="2537" height="284" key="GridCell.Tab.0.bottom/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.bottom/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.bottom/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528611" />
     <state width="1825" height="161" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="901" height="316" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
+    <state width="1825" height="187" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1606580259131" />
     <state width="2537" height="189" key="GridCell.Tab.0.bottom/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488911" />
-    <state width="901" height="316" key="GridCell.Tab.0.center" timestamp="1606176705994">
+    <state width="1825" height="187" key="GridCell.Tab.0.center" timestamp="1606580259131">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state width="2537" height="284" key="GridCell.Tab.0.center/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.center/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.center/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528611" />
     <state width="1825" height="161" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="901" height="316" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
+    <state width="1825" height="187" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1606580259131" />
     <state width="2537" height="189" key="GridCell.Tab.0.center/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488910" />
-    <state width="901" height="316" key="GridCell.Tab.0.left" timestamp="1606176705994">
+    <state width="1825" height="187" key="GridCell.Tab.0.left" timestamp="1606580259130">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state width="2537" height="284" key="GridCell.Tab.0.left/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.left/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.left/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528610" />
     <state width="1825" height="161" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="901" height="316" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
+    <state width="1825" height="187" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1606580259130" />
     <state width="2537" height="189" key="GridCell.Tab.0.left/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488909" />
-    <state width="901" height="316" key="GridCell.Tab.0.right" timestamp="1606176705994">
+    <state width="1825" height="187" key="GridCell.Tab.0.right" timestamp="1606580259131">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state width="2537" height="284" key="GridCell.Tab.0.right/301.1440.1920.1080/373.0.2187.1440@373.0.2187.1440" timestamp="1602198893748" />
     <state width="1825" height="302" key="GridCell.Tab.0.right/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169859800" />
     <state width="2537" height="189" key="GridCell.Tab.0.right/373.0.2187.2520@373.0.2187.2520" timestamp="1600180528611" />
     <state width="1825" height="161" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864613877" />
-    <state width="901" height="316" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1606176705994" />
+    <state width="1825" height="187" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1606580259131" />
     <state width="2537" height="189" key="GridCell.Tab.0.right/72.27.4408.1413@72.27.4408.1413" timestamp="1600163488911" />
     <state width="1825" height="340" key="GridCell.Tab.1.bottom" timestamp="1599559536268">
       <screen x="72" y="27" width="1848" height="1053" />
@@ -404,12 +406,12 @@
     <state x="710" y="27" width="1210" height="1053" key="SettingsEditor/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602169502092" />
     <state x="881" y="0" width="1210" height="1440" key="SettingsEditor/373.0.2187.2520@373.0.2187.2520" timestamp="1600181498772" />
     <state x="721" y="144" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1605970256276" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1602170030634">
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606177466485">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="591" y="289" key="Vcs.Push.Dialog.v2/301.1440.1920.1080/72.27.1848.1053@72.27.1848.1053" timestamp="1602170030634" />
     <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.2560.1440@72.27.1848.1053" timestamp="1599864296166" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1601591906757" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1606177466485" />
     <state x="1054" y="0" width="1310" height="1179" key="dock-window-1" timestamp="1600166957559">
       <screen x="373" y="0" width="2187" height="2520" />
     </state>

@@ -25,28 +25,18 @@ class CSRNet:
         plt.clf()
         #plt.imshow(image.reshape(image.shape[1], image.shape[2], image.shape[3]))
 
-        plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
-        plt.draw()
-        #plt.savefig("testP.png")
-
-        """
-        plt.imshow(image.reshape(image.shape[1], image.shape[2], image.shape[3]))
-        # plt.show()
-        plt.savefig("testO1.png")
+        # Set whitespace to 0
+        plt.subplots_adjust(left=0, right=1, bottom=0, top=1)
 
         plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
-        # plt.show()
-        plt.savefig("testP1.png")
-        print("saved")
-        """
+
+        plt.axis('tight')
+        plt.axis('off')
+        #plt.draw()
+        plt.savefig("testP.png")
+
         return int(count), image, self.ans
 
-    def get_predictionDrawed(self, frame):
-        #plt.imshow(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cmap=c.jet)
-        #plt.show()
-        #heatmap_img = cv2.applyColorMap(self.ans.reshape(self.ans.shape[1], self.ans.shape[2]), cv2.COLORMAP_JET)
-        return self.ans
-        #return heatmap_img
 
     def load_model(self):
         # Function to load and return neural network model
