@@ -417,7 +417,7 @@ class ThreadAI(threading.Thread):
                     self.peopleCount = str(count)
 
                     #Show the heatmap preview with plot
-                    src = cv2.imread('testP.png', cv2.IMREAD_UNCHANGED)
+                    src = cv2.imread('CSRNet/prediction/heatmap.png', cv2.IMREAD_UNCHANGED)
                     frame_resized = cv2.resize(src, (850, 600),
                                                interpolation=cv2.INTER_LINEAR)
                     photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
@@ -437,9 +437,9 @@ class ThreadAI(threading.Thread):
 
     def savePrediction(self, frame, framePredicted, name):
         imageOrig = PIL.Image.fromarray(frame)
-        imageOrig.save(name+".png")
+        imageOrig.save("PredictionSaved"+name+".png")
         imagePred = PIL.Image.fromarray(framePredicted)
-        imagePred.save(name + "P.png")
+        imagePred.save("PredictionSaved"+name + "Prediction.png")
 
 
 # Create a window and pass it to the Application object

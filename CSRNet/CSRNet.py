@@ -33,7 +33,7 @@ class CSRNet:
         plt.axis('tight')
         plt.axis('off')
         #plt.draw()
-        plt.savefig("testP.png")
+        plt.savefig(os.path.join(self.ROOT_DIR,'prediction/heatmap.png'))
 
         return int(count), image, self.ans
 
