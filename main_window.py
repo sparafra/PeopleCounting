@@ -381,9 +381,9 @@ class ThreadAI(threading.Thread):
                 if self.AlgorithmIndex == 1:
 
                     # Visualize results
-                    r = self.results[0]
+                    #r = self.results[0]
 
-                    frame_prediction = self.algorithm.get_predictionDrawed(frame, r)
+                    frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
                     frame_resized = cv2.resize(frame_prediction, (width, height),
                                                interpolation=cv2.INTER_LINEAR)
                     self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
@@ -393,12 +393,9 @@ class ThreadAI(threading.Thread):
                     #if self.showPredictionAnalysis:
                     #    self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, r))
 
-                    self.peopleCount = str(r['class_ids'].size)
+                    #self.peopleCount = str(self.algorithm.get_personPredicted(self.results))
                 elif self.AlgorithmIndex == 2:
-                    nPerson = 0
-                    for label, confidence, bbox in self.results:
-                        if label == "person":
-                            nPerson += 1
+
 
                     frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
                     frame_resized = cv2.resize(frame_prediction, (width, height),
@@ -410,20 +407,21 @@ class ThreadAI(threading.Thread):
                     #if self.showPredictionAnalysis:
                     #    self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, self.results))
 
-                    self.peopleCount = str(nPerson)
+                    #self.peopleCount = str(self.algorithm.get_personPredicted(self.results))
                 elif self.AlgorithmIndex == 3:
-                    count, img, hmap = self.results
+                    #count, img, hmap = self.results
 
-                    self.peopleCount = str(count)
+                    #self.peopleCount = str(count)
 
                     #Show the heatmap preview with plot
-                    src = cv2.imread('CSRNet/prediction/heatmap.png', cv2.IMREAD_UNCHANGED)
-                    frame_resized = cv2.resize(src, (850, 600),
+                    frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
+                    #src = cv2.imread('CSRNet/prediction/heatmap.png', cv2.IMREAD_UNCHANGED)
+                    frame_resized = cv2.resize(frame_prediction, (850, 600),
                                                interpolation=cv2.INTER_LINEAR)
                     photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
                     self.canvas_prediction.create_image(0, 0, image=photo, anchor=tkinter.NW)
 
-                self.labelPeople['text'] = "People: " + self.peopleCount
+                self.labelPeople['text'] = "People: " + str(self.algorithm.get_personPredicted(self.results))
 
     def stop(self):
         self.stopVar = True

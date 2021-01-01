@@ -96,3 +96,10 @@ class Yolo_V4:
             return image
         return None
 
+    def get_personPredicted(self, prediction):
+        nPerson = 0
+        for label, confidence, bbox in prediction:
+            if label == "person":
+                nPerson += 1
+        return nPerson
+

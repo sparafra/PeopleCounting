@@ -25,8 +25,9 @@
     <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="update image and main window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSRNet/CSRNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSRNet/CSRNet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaskRcnn/samples/MaskRcnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaskRcnn/samples/MaskRcnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolo/Yolo_V4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Yolo/Yolo_V4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testP.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +65,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main_window">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="Plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PeopleCounting" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -181,14 +188,7 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Docker.Docker Image" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.main_window" />
       <item itemvalue="Python.TestGpu" />
@@ -201,7 +201,6 @@
         <item itemvalue="Python.Plot" />
         <item itemvalue="Python.TestGpu" />
         <item itemvalue="Python.demo" />
-        <item itemvalue="Docker.Docker Image" />
       </list>
     </recent_temporary>
   </component>
