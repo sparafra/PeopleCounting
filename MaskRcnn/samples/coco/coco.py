@@ -52,9 +52,11 @@ ROOT_DIR = os.path.abspath("../../")
 
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
+print(ROOT_DIR)
 from MaskRcnn.mrcnn.config import Config
 from MaskRcnn.mrcnn import model as modellib, utils
 
+print(os.path.join(ROOT_DIR, "mask_rcnn_coco.h5"))
 # Path to trained weights file
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 
@@ -78,7 +80,7 @@ class CocoConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
+    IMAGES_PER_GPU = 1
 
     # Uncomment to train on 8 GPUs (default is 1)
     # GPU_COUNT = 8
@@ -382,6 +384,8 @@ def evaluate_coco(model, dataset, coco, eval_type="bbox", limit=0, image_ids=Non
     # Evaluate
     cocoEval = COCOeval(coco, coco_results, eval_type)
     cocoEval.params.imgIds = coco_image_ids
+    cocoEval.params.catIds = [1]  # 1 stands for the 'person' class, you can increase or decrease the category as needed
+
     cocoEval.evaluate()
     cocoEval.accumulate()
     cocoEval.summarize()
