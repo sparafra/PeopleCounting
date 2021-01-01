@@ -64,11 +64,12 @@ class MaskRcnn:
         return results
 
     def get_predictionDrawed(self, frame, detection):
+        detection = detection[0]
         return visualize.get_display_instances_image(frame, detection['rois'], detection['masks'], detection['class_ids'],
                                     self.class_names, detection['scores'])
 
-
-
-
+    def get_PersonPredicted(self, prediction):
+        r = prediction[0]
+        return r['class_ids'].size
 
 

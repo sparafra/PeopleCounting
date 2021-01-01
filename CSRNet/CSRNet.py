@@ -37,6 +37,12 @@ class CSRNet:
 
         return int(count), image, self.ans
 
+    def get_predictionDrawed(self, frame, detection):
+        return cv2.imread('CSRNet/prediction/heatmap.png', cv2.IMREAD_UNCHANGED)
+
+    def get_personPredicted(self, prediction):
+        count, img, hmap = prediction
+        return count
 
     def load_model(self):
         # Function to load and return neural network model
