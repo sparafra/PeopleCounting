@@ -220,7 +220,7 @@ class App:
         self.AlgorithmIndex = self.v.get()
         print("Change Alg: " + str(self.v.get()))
         if self.threadAI:
-            self.threadAI.stop()
+            self.threadAI.set_stop(True)
 
 
 
@@ -246,7 +246,16 @@ class App:
                 elif self.AlgorithmIndex == 3:
                     self.threadAI = ThreadAI("Thread3", self.vid, self.csrNet, self.lblCount, self.lblFPS, self.lblFrame_detected, self.canvas_prediction)
                     self.threadAI.start()
-
+            elif self.threadAI.is_stopped():
+                if self.AlgorithmIndex == 1:
+                    self.threadAI.set_algorithm(self.maskRcnn)
+                    self.threadAI.set_stop(False)
+                elif self.AlgorithmIndex == 2:
+                    self.threadAI.set_algorithm(self.yolo)
+                    self.threadAI.set_stop(False)
+                elif self.AlgorithmIndex == 3:
+                    self.threadAI.set_algorithm(self.csrNet)
+                    self.threadAI.set_stop(False)
 
             self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame))
             self.canvas.create_image(0, 0, image = self.photo, anchor = tkinter.NW)
@@ -354,36 +363,44 @@ class ThreadAI(threading.Thread):
 
 
     def run(self):
+        while True:
 
-        while not self.stopVar:
-            ret, frame, number = self.vid.get_frame()
+            if not self.stopVar:
+                ret, frame, number = self.vid.get_frame()
 
-            if ret:
-                self.labelFrame['text'] = "Examinated: " + str(number)
-
-
-                self.prev_time = time.time()
-
-                # Run detection
-                self.results = self.algorithm.get_prediction(frame)
-
-                #Show fps for the detection
-                self.fps = 1 / (time.time() - self.prev_time)
-                self.labelFPS['text'] = "FPS: {}".format(round(self.fps, 2))
+                if ret:
+                    self.labelFrame['text'] = "Examinated: " + str(number)
 
 
-                frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
-                frame_resized = cv2.resize(frame_prediction, (width, height),
-                                           interpolation=cv2.INTER_LINEAR)
-                self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
-                self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
+                    self.prev_time = time.time()
 
-                #show the number of detected person
-                self.labelPeople['text'] = "People: " + str(self.algorithm.get_personPredicted(self.results))
+                    # Run detection
+                    self.results = self.algorithm.get_prediction(frame)
+
+                    #Show fps for the detection
+                    self.fps = 1 / (time.time() - self.prev_time)
+                    self.labelFPS['text'] = "FPS: {}".format(round(self.fps, 2))
+
+
+                    frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
+                    frame_resized = cv2.resize(frame_prediction, (width, height),
+                                               interpolation=cv2.INTER_LINEAR)
+                    self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
+                    self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
+
+                    #show the number of detected person
+                    self.labelPeople['text'] = "People: " + str(self.algorithm.get_personPredicted(self.results))
 
 
     def stop(self):
         self.stopVar = True
+    def set_stop(self, value):
+        self.stopVar = value
+    def is_stopped(self):
+        return self.stopVar
+    def set_algorithm(self, algorithm):
+        self.algorithm = algorithm
+
     def showAnalysis(self, bool):
         self.showPredictionAnalysis = bool
     def setDetectionWindow(self, detectionWindow):
