@@ -238,14 +238,13 @@ class App:
         if ret:
             if not self.threadAI or not self.threadAI.is_alive():
                 if self.AlgorithmIndex == 1:
-                    self.threadAI = ThreadAI("Thread1", self.vid, frame, self.maskRcnn, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction)
+                    self.threadAI = ThreadAI("Thread1", self.vid, self.maskRcnn, self.lblCount, self.lblFPS, self.lblFrame_detected, self.canvas_prediction)
                     self.threadAI.start()
                 elif self.AlgorithmIndex == 2:
-                    self.threadAI = ThreadAI("Thread2", self.vid, frame, self.yolo, self.AlgorithmIndex, self.lblCount, self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction)
+                    self.threadAI = ThreadAI("Thread2", self.vid, self.yolo, self.lblCount, self.lblFPS, self.lblFrame_detected, self.canvas_prediction)
                     self.threadAI.start()
                 elif self.AlgorithmIndex == 3:
-                    self.threadAI = ThreadAI("Thread3", self.vid, frame, self.csrNet, self.AlgorithmIndex, self.lblCount,
-                                             self.lblFPS, self.lblFrame_detected, self.detectionWindow, self.showPredictionAnalysis, self.canvas_prediction)
+                    self.threadAI = ThreadAI("Thread3", self.vid, self.csrNet, self.lblCount, self.lblFPS, self.lblFrame_detected, self.canvas_prediction)
                     self.threadAI.start()
 
 
@@ -341,20 +340,16 @@ class MyVideoCapture(threading.Thread):
             self.vid.release()
 
 class ThreadAI(threading.Thread):
-    def __init__(self, nome, vid, image, algorithm, AlgorithmIndex, labelPeople, labelFPS, labelFrame, detectionWindow, showPredictionAnalysis, canvas_prediction):
+    def __init__(self, nome, vid, algorithm, labelPeople, labelFPS, labelFrame, canvas_prediction):
         threading.Thread.__init__(self)
 
         self.nome = nome
-        self.image = image
         self.algorithm = algorithm
         self.labelPeople = labelPeople
         self.labelFPS = labelFPS
         self.labelFrame = labelFrame
-        self.AlgorithmIndex = AlgorithmIndex
         self.stopVar = False
         self.vid = vid
-        self.detectionWindow = detectionWindow
-        self.showPredictionAnalysis = showPredictionAnalysis
         self.canvas_prediction = canvas_prediction
 
 
@@ -376,52 +371,16 @@ class ThreadAI(threading.Thread):
                 self.fps = 1 / (time.time() - self.prev_time)
                 self.labelFPS['text'] = "FPS: {}".format(round(self.fps, 2))
 
-                self.peopleCount = "0"
 
-                if self.AlgorithmIndex == 1:
+                frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
+                frame_resized = cv2.resize(frame_prediction, (width, height),
+                                           interpolation=cv2.INTER_LINEAR)
+                self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
+                self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
 
-                    # Visualize results
-                    #r = self.results[0]
-
-                    frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
-                    frame_resized = cv2.resize(frame_prediction, (width, height),
-                                               interpolation=cv2.INTER_LINEAR)
-                    self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
-                    self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
-
-                    #self.savePrediction(frame, frame_prediction, str(number))
-                    #if self.showPredictionAnalysis:
-                    #    self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, r))
-
-                    #self.peopleCount = str(self.algorithm.get_personPredicted(self.results))
-                elif self.AlgorithmIndex == 2:
-
-
-                    frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
-                    frame_resized = cv2.resize(frame_prediction, (width, height),
-                                               interpolation=cv2.INTER_LINEAR)
-                    self.photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
-                    self.canvas_prediction.create_image(0, 0, image=self.photo, anchor=tkinter.NW)
-                    #self.savePrediction(frame, frame_prediction, str(number))
-
-                    #if self.showPredictionAnalysis:
-                    #    self.detectionWindow.setImage(self.algorithm.get_predictionDrawed(frame, self.results))
-
-                    #self.peopleCount = str(self.algorithm.get_personPredicted(self.results))
-                elif self.AlgorithmIndex == 3:
-                    #count, img, hmap = self.results
-
-                    #self.peopleCount = str(count)
-
-                    #Show the heatmap preview with plot
-                    frame_prediction = self.algorithm.get_predictionDrawed(frame, self.results)
-                    #src = cv2.imread('CSRNet/prediction/heatmap.png', cv2.IMREAD_UNCHANGED)
-                    frame_resized = cv2.resize(frame_prediction, (850, 600),
-                                               interpolation=cv2.INTER_LINEAR)
-                    photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(frame_resized))
-                    self.canvas_prediction.create_image(0, 0, image=photo, anchor=tkinter.NW)
-
+                #show the number of detected person
                 self.labelPeople['text'] = "People: " + str(self.algorithm.get_personPredicted(self.results))
+
 
     def stop(self):
         self.stopVar = True
