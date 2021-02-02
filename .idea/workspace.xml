@@ -22,8 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="update image and main window">
-      <change beforePath="$PROJECT_DIR$/MaskRcnn/samples/MaskRcnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaskRcnn/samples/MaskRcnn.py" afterDir="false" />
+    <list default="true" id="1cd81a8c-c327-4372-bc65-6a6575144926" name="Default Changelist" comment="polymorfism details">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -306,7 +306,28 @@
       <option name="project" value="LOCAL" />
       <updated>1606177448768</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="polymorfism details">
+      <created>1609516186545</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1609516186545</updated>
+    </task>
+    <task id="LOCAL-00014" summary="polymorfism details">
+      <created>1609516191203</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1609516191203</updated>
+    </task>
+    <task id="LOCAL-00015" summary="polymorfism details">
+      <created>1609527458859</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1609527458859</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -327,6 +348,7 @@
     <MESSAGE value="update" />
     <MESSAGE value="added window for draw detection" />
     <MESSAGE value="update image and main window" />
-    <option name="LAST_COMMIT_MESSAGE" value="update image and main window" />
+    <MESSAGE value="polymorfism details" />
+    <option name="LAST_COMMIT_MESSAGE" value="polymorfism details" />
   </component>
 </project>

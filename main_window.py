@@ -29,9 +29,7 @@ class App:
     def __init__(self, window, window_title, video_source=0):
         self.window = window
         self.window.title(window_title)
-        #self.window.wait_visibility(self.window)
-        #self.window.wm_attributes('-alpha', 0.3)
-        #self.window.configure(background='grey')
+
 
         #Image Background
         src = cv2.imread('background/background.png', cv2.IMREAD_UNCHANGED)
@@ -61,7 +59,7 @@ class App:
         self.file_path = filedialog.askopenfilename(filetypes = (("MP4 Files","*.mp4"),))
 
         # open video source (MyVideoCapture is on new thread)
-        self.vid = MyVideoCapture(self.file_path)
+        self.vid = VideoCapture(self.file_path)
 
         self.vid.start()
 
@@ -161,11 +159,6 @@ class App:
                                        command=self.fileDialog)
         self.btn_file.grid(row=6, column=2, sticky=tkinter.W, pady=2, padx=55)
 
-        #self.btn_renderPrediction = tkinter.Button(window, text="Prediction Render", bg="orange", width=50,
-                                                   #command=self.showAnalysis)
-        #self.btn_renderPrediction.pack(anchor=tkinter.CENTER, expand=True)
-        #self.btn_renderPrediction.grid(row = 6, column = 4, sticky = tkinter.W, pady = 2)
-
 
         # After it is called once, the update method will be automatically called every delay milliseconds
         self.delay =1 #15
@@ -177,6 +170,7 @@ class App:
         self.file_path = filedialog.askopenfilename(filetypes = (("MP4 Files","*.mp4"),))
         self.lblPath['text'] = str(self.file_path).split("/")[len(str(self.file_path).split("/"))-1]
         #print(str(self.file_path).split("/"))
+
         self.stopVideo()
         self.vid.startVideo(self.file_path)
         self.btn_resume['state'] = "disabled"
@@ -260,14 +254,14 @@ class App:
             self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame))
             self.canvas.create_image(0, 0, image = self.photo, anchor = tkinter.NW)
             self.lblFrame['text'] = "FRAME: " + str(number)
-            #print("FRAME: ", number)
 
+            #print("FRAME: ", number)
             #print("FPS: ", 1.0 / (time.time() - start_time))  # FPS = 1 / time to process loop
 
 
         self.window.after(self.delay, self.update)
 
-class MyVideoCapture(threading.Thread):
+class VideoCapture(threading.Thread):
     def __init__(self, video_source=0):
         threading.Thread.__init__(self)
         # Open the video source
