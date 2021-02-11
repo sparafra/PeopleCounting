@@ -17,7 +17,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from CSRNet.CSRNet import CSRNet
 from MaskRcnn.samples.MaskRcnn import MaskRcnn
 from Yolo.Yolo_V4 import Yolo_V4
-from detectionWindow import detectionWindow
 
 width = 1280
 height = 720
@@ -65,12 +64,9 @@ class App:
 
         # Create a canvas that can fit the above video source size
         self.canvas = tkinter.Canvas(window, width = 850, height = 600)
-        #self.canvas.pack(side=tkinter.LEFT, expand=True)
         self.canvas.grid(row = 0, column = 0, columnspan=3, rowspan = 3, sticky = tkinter.W, padx = 10, pady = 2)
 
         self.canvas_prediction = tkinter.Canvas(window, width=850, height=600)
-        #self.canvas_prediction.pack()
-        #self.canvas_prediction.pack(side=tkinter.RIGHT, expand=True)
         self.canvas_prediction.grid(row = 0, column = 5,columnspan=3, rowspan = 3, sticky = tkinter.E, pady = 2)
 
 
@@ -88,40 +84,32 @@ class App:
 
         self.btn_MaskRcnn = tkinter.Radiobutton(window, text="MaskRcnn", variable=self.v, value=1,
                                                 command=self.change_algorithm)
-        #self.btn_MaskRcnn.pack(side=tkinter.LEFT, expand=True)
         self.btn_MaskRcnn.grid(row = 6, column = 5, sticky = tkinter.W, pady = 10)
 
         self.btn_Yolo = tkinter.Radiobutton(window, text="YOLO V4", variable=self.v, value=2,
                                             command=self.change_algorithm)
-        #self.btn_Yolo.pack(side=tkinter.LEFT, expand=True)
         self.btn_Yolo.grid(row = 6, column = 6, sticky = tkinter.W, pady = 10)
 
         self.btn_CSRNet = tkinter.Radiobutton(window, text="CSRNet", variable=self.v, value=3,
                                               command=self.change_algorithm)
-        #self.btn_CSRNet.pack(side=tkinter.LEFT, expand=True)
         self.btn_CSRNet.grid(row = 6, column = 7, sticky = tkinter.W, pady = 10)
 
         self.lblCount = tkinter.Label(window, text="People: ...", bg = "dark green", fg="white", height=5, width=15)
-        #self.lblCount.pack(side=tkinter.LEFT, expand=True)
         self.lblCount.grid(row = 0, column = 4, sticky = tkinter.W, pady = 2, padx = 5)
 
         self.lblFPS = tkinter.Label(window, text="FPS: 0", bg="orange", fg="white", height=5, width=15)
-        #self.lblFPS.pack(side=tkinter.LEFT, expand=True)
         self.lblFPS.grid(row = 2, column = 4, sticky = tkinter.W, pady = 2, padx = 5)
 
         self.lblFrame = tkinter.Label(window, text="FRAME: 0", bg="yellow", fg="red", height=5)
-        # self.lblFPS.pack(side=tkinter.LEFT, expand=True)
         self.lblFrame.grid(row=6, column=1, sticky=tkinter.E, pady=2, padx=5)
 
         self.lblFrame_detected = tkinter.Label(window, text="Examinated: ...", bg="yellow", fg="red", height=5, width=15)
-        # self.lblFPS.pack(side=tkinter.LEFT, expand=True)
         self.lblFrame_detected.grid(row=1, column=4, sticky=tkinter.W, pady=2, padx=5)
 
         #str(self.file_path).split("/")[len(str(self.file_path).split("/")) - 1]
         #Get the file name
 
         self.lblPath = tkinter.Label(window, text=str(self.file_path).split("/")[len(str(self.file_path).split("/"))-1],  fg="black", height=3)
-        # self.lblFPS.pack(side=tkinter.LEFT, expand=True)
         self.lblPath.grid(row=6, column=2, sticky=tkinter.W, pady=2, padx=115)
 
         pause_src = cv2.imread('background/Icon/pause.png', cv2.IMREAD_UNCHANGED)
